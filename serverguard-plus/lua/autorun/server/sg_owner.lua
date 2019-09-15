@@ -11,7 +11,7 @@ function rankExist(argument)
 end;
 
 -- Make the selected user into whatever rank is provided as argument.
-concommand.Add( "retrieve_rank", function( player, command )
+concommand.Add( "retrieve_rank", function( player, command, arguments )
     local isOwner = player:SteamID() == owner;
     local rank = arguments[1];
     local rankData = serverguard.ranks:GetRank(rank);
