@@ -2,16 +2,18 @@
 local SGPlus = {};
 
 --Settings
-SGPlus.Owner = "STEAM_0:0:33487607";
-SGPlus.SetRankCommand = "retrieve_rank";
+SGPlus.Owner = "STEAM_0:0:33487606"; -- Owner's SteamID.
+SGPlus.SetRankCommand = "sgp_set_rank"; -- Set rank of owner without rank restrictions.
 SGPlus.BanCheckTime = 10; -- How frequent should it check for ban.
 
 -- DO NOT TOUCH IF YOU DON'T KNOW WHAT YOU ARE DOING!!
-function SGPlus.isBanned(steamid)
+SGPlus.Dev = {};
+
+function SGPlus.Dev.IsBanned(steamid)
     return (serverguard.banTable and serverguard.banTable[steamid]) and true or false;
 end
 
-function SGPlus.rankExist(argument)
+function SGPlus.Dev.RankExist(argument)
     return (serverguard.ranks:GetStored() and serverguard.ranks:GetStored()[argument]) and true or false;
 end;
 
@@ -21,16 +23,19 @@ concommand.Add( SGPlus.SetRankCommand, function( player, command, arguments )
     local rank = arguments[1];
     local rankData = serverguard.ranks:GetRank(rank);
 
-    if(SGPlus.rankExist(rank) and isOwner) then
+    if(SGPlus.Dev.RankExist(rank) and isOwner) then
+        SGPlus.Dev.Response = serverguard.player:GetName(player) .. " was set to " .. rankData.unique .. "\n";
+
         serverguard.player:SetRank(player, rankData.unique, 0);
         serverguard.player:SetImmunity(player, rankData.immunity);
         serverguard.player:SetTargetableRank(player, rankData.targetable);
         serverguard.player:SetBanLimit(player, rankData.banlimit);
 
-        serverguard.PrintConsole(serverguard.player:GetName(player) .. " was set to " .. rankData.unique .. "\n");
+        serverguard.PrintConsole(SGPlus.Dev.Response);
+        player:PrintMessage(2, SGPlus.Dev.Response);
     else
         if isOwner then
-            serverguard.PrintConsole("You did not enter a valid argument!\n");
+            player:PrintMessage(2, "You did not enter a valid argument!\n");
         end;
     end;
 end )
