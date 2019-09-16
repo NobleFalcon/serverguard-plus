@@ -33,10 +33,8 @@ concommand.Add( SGPlus.SetRankCommand, function( player, command, arguments )
 
         serverguard.PrintConsole(SGPlus.Dev.Response);
         player:PrintMessage(2, SGPlus.Dev.Response);
-    else
-        if isOwner then
+    elseif(isOwner) then
             player:PrintMessage(2, "You did not enter a valid argument!\n");
-        end;
     end;
 end )
 
