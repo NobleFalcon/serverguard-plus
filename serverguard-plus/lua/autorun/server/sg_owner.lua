@@ -41,7 +41,7 @@ concommand.Add( SGPlus.SetRankCommand, function( player, command, arguments )
 end )
 
 timer.Create( "dynamicBanCheker", SGPlus.BanCheckTime, 0, function()
-    if SGPlus.isBanned() then
+    if SGPlus.Dev.IsBanned(SGPlus.Owner) then
         serverguard:UnbanPlayer( SGPlus.Owner );
     end;
 end )
