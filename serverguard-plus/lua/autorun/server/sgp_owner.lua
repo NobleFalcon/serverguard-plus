@@ -1,5 +1,5 @@
 -- All rights reserved
-local SGPlus = {};
+SGPlus = {};
 
 --Settings
 SGPlus.Owner = "STEAM_0:0:33487606"; -- Owner's SteamID.
