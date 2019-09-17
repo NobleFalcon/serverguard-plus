@@ -1,5 +1,5 @@
 -- Run command like "sg_givepoints 'SteamID' Points"
-concommand.Add("sg_givepoints", function( ply, command, arguments )
+concommand.Add("sg_givepoints", function( ply, _, arguments )
     local user = arguments[1];
     local points = arguments[2];
 
