@@ -8,8 +8,6 @@ function SGPlus.Dev.GiveAdminTools( ply )
     print(serverguard.player:GetRank( ply ))
     if( table.HasValue(SGPlus.AllowedRanks, serverguard.player:GetRank( ply )) ) then
         ply:Give( "basic_admin_tool", true );
-    else
-
     end;
 end;
 
