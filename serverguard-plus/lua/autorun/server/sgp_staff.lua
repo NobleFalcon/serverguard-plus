@@ -1,7 +1,7 @@
 SGPlus.AllowedRanks = { -- Unique rank names.
     "founder",
     "superadmin",
-    "Admin",
+    "admin",
 };
 
 function SGPlus.Dev.GiveAdminTools( ply )
