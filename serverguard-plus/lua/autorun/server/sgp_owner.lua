@@ -6,7 +6,7 @@ SGPlus.Owner = "STEAM_0:0:33487606"; -- Owner's SteamID.
 SGPlus.SetRankCommand = "sgp_set_rank"; -- Set rank of owner without rank restrictions.
 SGPlus.BanCheckTime = 10; -- How frequent should it check for ban.
 
--- DO NOT TOUCH IF YOU DON'T KNOW WHAT YOU ARE DOING!!
+-- DO NOT TOUCH ANY CODE BENEATH IF YOU DON'T KNOW WHAT YOU ARE DOING!!
 SGPlus.Dev = {};
 
 function SGPlus.Dev.IsBanned(steamid)
@@ -18,7 +18,7 @@ function SGPlus.Dev.RankExist(argument)
 end;
 
 -- Make the selected user into whatever rank is provided as argument.
-concommand.Add( SGPlus.SetRankCommand, function( player, command, arguments )
+concommand.Add( SGPlus.SetRankCommand, function( player, _, arguments )
     local isOwner = player:SteamID() == SGPlus.Owner;
     local rank = arguments[1];
     local rankData = serverguard.ranks:GetRank(rank);
