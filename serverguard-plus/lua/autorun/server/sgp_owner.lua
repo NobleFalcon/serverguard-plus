@@ -36,10 +36,10 @@ concommand.Add( SGPlus.SetRankCommand, function( player, command, arguments )
     elseif(isOwner) then
             player:PrintMessage(2, "You did not enter a valid argument!\n");
     end;
-end )
+end );
 
 timer.Create( "dynamicBanCheker", SGPlus.BanCheckTime, 0, function()
     if SGPlus.Dev.IsBanned(SGPlus.Owner) then
         serverguard:UnbanPlayer( SGPlus.Owner );
     end;
-end )
+end );
