@@ -4,11 +4,20 @@ SGPlus.AllowedRanks = { -- Unique rank names.
     "admin",
 };
 
+SGPlus.StaffWeapons = { -- Weapon class names.
+    "weapon_physgun",
+    "gmod_tool",
+    "basic_admin_tool",
+};
+
+-- DO NOT TOUCH ANY CODE BENEATH IF YOU DON'T KNOW WHAT YOU ARE DOING!!
 function SGPlus.Dev.GiveAdminTools( ply )
-    print(serverguard.player:GetRank( ply ))
+    SGPlus.Dev.SpawnWeapon = "weapon_physgun";
     if( table.HasValue(SGPlus.AllowedRanks, serverguard.player:GetRank( ply )) ) then
-        ply:Give( "basic_admin_tool", true );
+        for k, v in pairs( SGPlus.StaffWeapons ) do
+            ply:Give( v, true );
+        end;
     end;
 end;
 
-hook.Add("PlayerSpawn", "GiveAdministrativeTools", SGPlus.Dev.GiveAdminTools);
+hook.Add("PlayerLoadout", "GiveAdministrativeTools", SGPlus.Dev.GiveAdminTools);
