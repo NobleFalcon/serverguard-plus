@@ -7,6 +7,8 @@ SGPlus.Extra.DisplayChat = false;
 SGPlus.Extra.Prefix = "!"; -- Command prefix.
 
 -- Commands
+SGPlus.Extra.Spawn = "spawn"; -- Sends player to selected coordinates.
+SGPlus.Extra.SpawnPoint = Vector( 0, 0, 0 ) -- Sends player to spesified position.
 SGPlus.Extra.GetPos = "getpos"; -- Gets position in vector.
 SGPlus.Extra.Roll = "roll"; -- Rolls random number and broadcast's in chat.
 
@@ -21,6 +23,11 @@ if( SGPlus.Extra.Enabled ) then
             ply:PrintMessage( 3, tostring( ply:GetPos() ) );
             return SGPlus.Extra.DisplayChat;
 
+        -- Send player to given vector value.
+        elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.Spawn and player:IsAdmin() ) then
+            ply:SetPos( SGPlus.Extra.SpawnPoint );
+            return SGPlus.Extra.DisplayChat;
+        
         end;
     end;
 
