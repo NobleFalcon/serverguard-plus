@@ -3,6 +3,7 @@ include( "sgp_config.lua" );
 SGPlus.Extra = Extra or {};
 -- Setup
 SGPlus.Extra.Enabled = true;
+SGPlus.Extra.DisplayChat = false;
 SGPlus.Extra.Prefix = "!"; -- Command prefix.
 
 -- Commands
