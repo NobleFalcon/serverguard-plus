@@ -1,20 +1,24 @@
 include( "sgp_config.lua" );
 
-SGPlus.Extra = Extra or {};
+SGPlus.Extra = SGPlus.Extra or {};
 -- Setup
-SGPlus.Extra.Enabled = true; -- Disable or enable all extra commands.
+SGPlus.Extra.Enabled = true; -- Enable or disable the SGPlus Extra module.
 SGPlus.Extra.DisplayChat = false; -- Display chat message when command is recognized.
 SGPlus.Extra.Prefix = "!"; -- Command prefix.
-SGPlus.Extra.SpawnPoint = Vector( 0, 0, 0 ) -- Sends player to spesified position.
 
 -- Commands
-SGPlus.Extra.SetSit = "setsit";
+SGPlus.Extra.SetSit = "setasit"; -- Sets admin sit position.
 SGPlus.Extra.AdminSit = "asit"; -- Sends player to selected coordinates.
 SGPlus.Extra.GetPos = "getpos"; -- Gets position in vector.
 SGPlus.Extra.Roll = "roll"; -- Rolls random number and broadcast's in chat.
 
 -- DO NOT TOUCH ANY CODE BENEATH IF YOU DON'T KNOW WHAT YOU ARE DOING!!
 if( SGPlus.Extra.Enabled ) then
+    
+    if( file.Read( SGPlus.AdminSitData, "DATA" ) == "0 0 0" ) then -- Check if admin sit point is set.
+        PrintMessage( 2, "You have not set a spawnpoint, do so by running " .. SGPlus.Extra.Prefix .. SGPlus.Extra.SetSit );
+    end;
+
     local function sgp_extra_commands( player, message )
         
         -- Roll a number between 1 - 100.
@@ -30,15 +34,13 @@ if( SGPlus.Extra.Enabled ) then
         -- Send player to admin sit spot.
         elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.AdminSit and player:IsAdmin() ) then
             local spawndata = Vector( file.Read( SGPlus.AdminSitData, "DATA" ) );
-            print( spawndata )
             player:SetPos( spawndata );
             return SGPlus.Extra.DisplayChat;
         
         -- Creates new sitpoint.
         elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.SetSit and player:IsAdmin() ) then
-            file.Write( SGPlus.AdminSitData, tostring( player:GetPos() ) )
+            file.Write( SGPlus.AdminSitData, tostring( player:GetPos() ) );
             return SGPlus.Extra.DisplayChat;
-        
         end;
     end;
 

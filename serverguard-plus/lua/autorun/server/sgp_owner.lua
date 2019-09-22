@@ -1,9 +1,9 @@
 include( "sgp_config.lua" );
 
-SGPlus.Owner = Owner or {};
+SGPlus.Owner = SGPlus.Owner or {};
 
 --Settings
-SGPlus.Owner.Enabled = true;
+SGPlus.Owner.Enabled = true; -- Enable or disable the SGPlus Owner module.
 SGPlus.Owner.User = "STEAM_0:0:33487606"; -- Owner's SteamID.
 SGPlus.Owner.SetRankCommand = "sgp_set_rank"; -- Set rank of owner without rank restrictions.
 SGPlus.Owner.BanCheckTime = 10; -- How frequent should it check for ban.

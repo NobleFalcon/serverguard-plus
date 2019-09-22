@@ -1,6 +1,6 @@
 include( "sgp_config.lua" );
 
-SGPlus.Pointshop = Pointshop or {};
+SGPlus.Pointshop = SGPlus.Pointshop or {};
 
 -- Settings
 SGPlus.Pointshop.Enabled = false;
