@@ -13,7 +13,6 @@ SGPlus.Staff.AllowedRanks = { -- Unique rank names.
 SGPlus.Staff.Weapons = { -- Weapon class names.
     "weapon_physgun",
     "gmod_tool",
-    "basic_admin_tool",
 };
 
 -- DO NOT TOUCH ANY CODE BENEATH IF YOU DON'T KNOW WHAT YOU ARE DOING!!
