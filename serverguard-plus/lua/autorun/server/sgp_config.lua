@@ -1,6 +1,8 @@
 -- Included in every file.
 SGPlus = SGPlus or {};
 
+SGPlus.Version = "1.0";
+
 SGPlus.AdminSitDataDir = "sgplus/adminsitdata/"
 SGPlus.AdminSitData = SGPlus.AdminSitDataDir .. "adminsitdata.txt";
 
