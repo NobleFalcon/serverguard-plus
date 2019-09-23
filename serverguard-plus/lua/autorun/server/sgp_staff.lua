@@ -2,8 +2,10 @@ include( "sgp_init.lua" );
 
 SGPlus.Staff = SGPlus.Staff or {};
 
+-- Setup
 SGPlus.Staff.Enabled = true; -- Enable or disable the SGPlus Staff module.
 
+-- Settings.
 SGPlus.Staff.AllowedRanks = { -- Unique rank names.
     "founder",
     "superadmin",

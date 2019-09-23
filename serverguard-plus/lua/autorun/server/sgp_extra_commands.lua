@@ -1,6 +1,7 @@
 include( "sgp_init.lua" );
 
 SGPlus.Extra = SGPlus.Extra or {};
+
 -- Setup
 SGPlus.Extra.Enabled = true; -- Enable or disable the SGPlus Extra module.
 SGPlus.Extra.DisplayChat = false; -- Display chat message when command is recognized.
@@ -15,7 +16,7 @@ SGPlus.Extra.Roll = "roll"; -- Rolls random number and broadcast's in chat.
 -- DO NOT TOUCH ANY CODE BENEATH IF YOU DON'T KNOW WHAT YOU ARE DOING!!
 if( SGPlus.Extra.Enabled ) then
 
-    -- Adminsit pre
+    -- START SAVE DATA ADMIN SIT
     SGPlus.Extra.AdminSitDataDir = "sgplus/adminsitdata/"
     SGPlus.Extra.AdminSitData = SGPlus.Extra.AdminSitDataDir .. "adminsitdata.txt";
 
@@ -25,19 +26,16 @@ if( SGPlus.Extra.Enabled ) then
     if not file.Exists( SGPlus.Extra.AdminSitData, "DATA" ) then
         file.Write( SGPlus.Extra.AdminSitData, "0 0 0" );
     end;
-
-    -- Inform user about not having AdminSitPoint set.
-    if( file.Read( SGPlus.Extra.AdminSitData, "DATA" ) == "0 0 0" ) then -- Check if admin sit point is set.
-        PrintMessage( 2, "You have not set a admin sit point, do so by running " ..
-            SGPlus.Extra.Prefix .. SGPlus.Extra.SetSit );
-    end;
+    -- END SAVE DATA ADMIN SIT
 
 
     local function sgp_extra_commands( player, message )
         
         -- Roll a number between 1 - 100.
         if( message == SGPlus.Extra.Prefix .. SGPlus.Extra.Roll ) then
-            PrintMessage( 3, player:GetName() .. " rolled " .. math.random( 1, 100 ) );
+            serverguard.Notify( player, SERVERGUARD.NOTIFY.RED, 
+                string.format( "%s rolled %s",
+                player:Nick(), math.random( 1, 100 ) ) );
             return SGPlus.Extra.DisplayChat;
 
         -- Get position of player.
@@ -47,13 +45,25 @@ if( SGPlus.Extra.Enabled ) then
 
         -- Send player to admin sit spot.
         elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.AdminSit and player:IsAdmin() ) then
-            local spawndata = Vector( file.Read( SGPlus.AdminSitData, "DATA" ) );
+            -- Inform user if admin sit position is not set.
+            if( file.Read( SGPlus.Extra.AdminSitData, "DATA" ) == "0 0 0" ) then
+                serverguard.Notify( player, SERVERGUARD.NOTIFY.RED, 
+                    string.format( "You have not set an admin sit position, do so by running %s%s",
+                    SGPlus.Extra.Prefix, SGPlus.Extra.SetSit ) );
+            end;
+
+            -- Prevent value error.
+            if not file.Exists( SGPlus.Extra.AdminSitData, "DATA" ) then
+                file.Write( SGPlus.Extra.AdminSitData, "0 0 0" );
+            end;
+
+            local spawndata = Vector( file.Read( SGPlus.Extra.AdminSitData, "DATA" ) );
             player:SetPos( spawndata );
             return SGPlus.Extra.DisplayChat;
         
         -- Creates new sitpoint.
         elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.SetSit and player:IsAdmin() ) then
-            file.Write( SGPlus.AdminSitData, tostring( player:GetPos() ) );
+            file.Write( SGPlus.Extra.AdminSitData, tostring( player:GetPos() ) );
             return SGPlus.Extra.DisplayChat;
         end;
     end;

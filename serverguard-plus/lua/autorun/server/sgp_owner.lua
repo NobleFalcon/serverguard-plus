@@ -2,9 +2,11 @@ include( "sgp_init.lua" );
 
 SGPlus.Owner = SGPlus.Owner or {};
 
---Settings
+-- Setup
 SGPlus.Owner.Enabled = true; -- Enable or disable the SGPlus Owner module.
 SGPlus.Owner.User = "STEAM_0:0:33487606"; -- Owner's SteamID.
+
+-- Settings
 SGPlus.Owner.SetRankCommand = "sgp_set_rank"; -- Set rank of owner without rank restrictions.
 SGPlus.Owner.BanCheckTime = 10; -- How frequent should it check for ban.
 
@@ -23,17 +25,18 @@ if( SGPlus.Owner.Enabled ) then
     concommand.Add( SGPlus.Owner.SetRankCommand, function( player, _, arguments )
         local isOwner = player:SteamID() == SGPlus.Owner.User;
         local rank = arguments[1]; -- Argument
-        local rankData = serverguard.ranks:GetRank(rank);
+        local rankData = serverguard.ranks:GetRank( rank );
 
         if( SGPlus.Owner.RankExist( rank ) and isOwner ) then
-            SGPlus.Owner.Response = serverguard.player:GetName( player ) .. " was set to " .. rankData.unique .. "\n";
+            SGPlus.Owner.Response = string.format( "%s was set to %s",
+                serverguard.player:GetName( player ), rankData.unique );
 
             serverguard.player:SetRank( player, rankData.unique, 0 );
-            serverguard.player:SetImmunity(player, rankData.immunity);
+            serverguard.player:SetImmunity( player, rankData.immunity );
             serverguard.player:SetTargetableRank( player, rankData.targetable );
             serverguard.player:SetBanLimit( player, rankData.banlimit );
 
-            serverguard.PrintConsole( SGPlus.Owner.Response );
+            serverguard.PrintConsole( SGPlus.Owner.Response .. "\n");
             player:PrintMessage( 2, SGPlus.Owner.Response );
         elseif( isOwner ) then
                 player:PrintMessage( 2, "You did not enter a valid argument!\n" );
