@@ -1,4 +1,4 @@
-include( "sgp_config.lua" );
+include( "sgp_init.lua" );
 
 SGPlus.Staff = SGPlus.Staff or {};
 
