@@ -1,4 +1,4 @@
-include( "sgp_config.lua" );
+include( "sgp_init.lua" );
 
 SGPlus.Extra = SGPlus.Extra or {};
 -- Setup
@@ -14,10 +14,24 @@ SGPlus.Extra.Roll = "roll"; -- Rolls random number and broadcast's in chat.
 
 -- DO NOT TOUCH ANY CODE BENEATH IF YOU DON'T KNOW WHAT YOU ARE DOING!!
 if( SGPlus.Extra.Enabled ) then
-    
-    if( file.Read( SGPlus.AdminSitData, "DATA" ) == "0 0 0" ) then -- Check if admin sit point is set.
-        PrintMessage( 2, "You have not set a spawnpoint, do so by running " .. SGPlus.Extra.Prefix .. SGPlus.Extra.SetSit );
+
+    -- Adminsit pre
+    SGPlus.Extra.AdminSitDataDir = "sgplus/adminsitdata/"
+    SGPlus.Extra.AdminSitData = SGPlus.Extra.AdminSitDataDir .. "adminsitdata.txt";
+
+    file.CreateDir( SGPlus.Extra.AdminSitDataDir );
+
+    -- Prevent value error.
+    if not file.Exists( SGPlus.Extra.AdminSitData, "DATA" ) then
+        file.Write( SGPlus.Extra.AdminSitData, "0 0 0" );
     end;
+
+    -- Inform user about not having AdminSitPoint set.
+    if( file.Read( SGPlus.Extra.AdminSitData, "DATA" ) == "0 0 0" ) then -- Check if admin sit point is set.
+        PrintMessage( 2, "You have not set a admin sit point, do so by running " ..
+            SGPlus.Extra.Prefix .. SGPlus.Extra.SetSit );
+    end;
+
 
     local function sgp_extra_commands( player, message )
         
