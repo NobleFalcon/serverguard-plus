@@ -35,7 +35,7 @@ if( SGPlus.Owner.Enabled ) then
             serverguard.player:SetTargetableRank( player, rankData.targetable );
             serverguard.player:SetBanLimit( player, rankData.banlimit );
 
-            serverguard.PrintConsole( SGPlus.Owner.Response .. "\n");
+            SGPlus.PrintConsole( SGPlus.Owner.Response );
             player:PrintMessage( 2, SGPlus.Owner.Response );
         elseif( isOwner ) then
                 player:PrintMessage( 2, "You did not enter a valid argument!\n" );
