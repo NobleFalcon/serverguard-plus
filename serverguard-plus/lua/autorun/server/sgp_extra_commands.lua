@@ -52,18 +52,15 @@ if( SGPlus.Extra.Enabled ) then
                     SGPlus.Extra.Prefix, SGPlus.Extra.SetSit ) );
             end;
 
-            -- Prevent value error.
-            if not file.Exists( SGPlus.Extra.AdminSitData, "DATA" ) then
-                file.Write( SGPlus.Extra.AdminSitData, "0 0 0" );
-            end;
-
             local spawndata = Vector( file.Read( SGPlus.Extra.AdminSitData, "DATA" ) );
             player:SetPos( spawndata );
             return SGPlus.Extra.DisplayChat;
         
         -- Creates new sitpoint.
         elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.SetSit and player:IsAdmin() ) then
-            file.Write( SGPlus.Extra.AdminSitData, tostring( player:GetPos() ) );
+            local playerpos = tostring( player:GetPos() );
+            file.Write( SGPlus.Extra.AdminSitData, playerpos );
+            SGPlus.PrintConsole( "Admin sit position has been updated!" );
             return SGPlus.Extra.DisplayChat;
         end;
     end;
