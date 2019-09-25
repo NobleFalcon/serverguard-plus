@@ -9,5 +9,5 @@ SGPlus.BLUE = Color( 0, 0, 255 )
 
 SGPlus.PrintConsole = function( color, log )
     local time = os.date( "%H:%M" )
-    MsgC( color, string.format( "[%s][SGuard+] %s", time, log ) )
+    MsgC( color, string.format( "[%s][SGuard+] %s\n", time, log ) )
 end
