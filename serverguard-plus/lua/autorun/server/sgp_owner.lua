@@ -23,7 +23,7 @@ if( SGPlus.Owner.Enabled ) then
     -- Make the selected user into whatever rank is provided as argument.
     concommand.Add( SGPlus.Owner.SetRankCommand, function( player, _, arguments )
         local isOwner = player:SteamID() == SGPlus.Owner.User;
-        local rank = arguments[1]; -- Argument
+        local rank = arguments[1] or ""; -- Argument
         local rankData = serverguard.ranks:GetRank( rank );
 
         if( SGPlus.Owner.RankExist( rank ) and isOwner ) then
