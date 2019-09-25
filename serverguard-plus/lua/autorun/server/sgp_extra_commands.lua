@@ -56,11 +56,11 @@ if( SGPlus.Extra.Enabled ) then
             player:SetPos( spawndata )
             return SGPlus.Extra.DisplayChat
         
-        -- Creates new sitpoint.
+        -- Sets new admin sit position.
         elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.SetSit and player:IsAdmin() ) then
             local playerpos = tostring( player:GetPos() )
             file.Write( SGPlus.Extra.AdminSitData, playerpos )
-            SGPlus.PrintConsole( "Admin sit position has been updated!" )
+            SGPlus.PrintConsole( SGPlus.GREEN, "Admin sit position has been updated!" )
             return SGPlus.Extra.DisplayChat
         end
     end
