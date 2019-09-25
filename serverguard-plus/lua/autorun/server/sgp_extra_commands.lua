@@ -17,8 +17,8 @@ SGPlus.Extra.Roll = "roll"; -- Rolls random number and broadcast's in chat.
 if( SGPlus.Extra.Enabled ) then
 
     -- START SAVE DATA ADMIN SIT
-    SGPlus.Extra.AdminSitDataDir = "sgplus/adminsitdata/"
-    SGPlus.Extra.AdminSitData = SGPlus.Extra.AdminSitDataDir .. "adminsitdata.txt";
+    SGPlus.Extra.AdminSitDataDir = "sgplus/admin_sit/";
+    SGPlus.Extra.AdminSitData = SGPlus.Extra.AdminSitDataDir .. "admin_sit.txt";
 
     file.CreateDir( SGPlus.Extra.AdminSitDataDir );
 

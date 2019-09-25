@@ -11,7 +11,6 @@ SGPlus.Owner.SetRankCommand = "sgp_set_rank"; -- Set rank of owner without rank 
 SGPlus.Owner.BanCheckTime = 10; -- How frequent should it check for ban.
 
 -- DO NOT TOUCH ANY CODE BENEATH IF YOU DON'T KNOW WHAT YOU ARE DOING!!
-
 if( SGPlus.Owner.Enabled ) then
     function SGPlus.Owner.IsBanned( steamid )
         return ( serverguard.banTable and serverguard.banTable[steamid] ) and true or false;
