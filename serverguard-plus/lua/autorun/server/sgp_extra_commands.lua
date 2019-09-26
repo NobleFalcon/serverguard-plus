@@ -60,7 +60,10 @@ if( SGPlus.Extra.Enabled ) then
         elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.SetSit and player:IsAdmin() ) then
             local playerpos = tostring( player:GetPos() )
             file.Write( SGPlus.Extra.AdminSitData, playerpos )
-            SGPlus.PrintConsole( SGPlus.GREEN, "Admin sit position has been updated!" )
+
+            local response = "Admin sit position has been updated!"
+            serverguard.Notify( player, SERVERGUARD.NOTIFY.GREEN, response )
+            SGPlus.PrintConsole( SGPlus.WHITE, response )
             return SGPlus.Extra.DisplayChat
         end
     end

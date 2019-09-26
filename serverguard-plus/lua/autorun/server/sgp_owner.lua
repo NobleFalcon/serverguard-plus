@@ -35,7 +35,7 @@ if( SGPlus.Owner.Enabled ) then
             serverguard.player:SetTargetableRank( player, rankData.targetable )
             serverguard.player:SetBanLimit( player, rankData.banlimit )
 
-            SGPlus.PrintConsole( SGPlus.GREEN, SGPlus.Owner.Response )
+            SGPlus.PrintConsole( SGPlus.WHITE, SGPlus.Owner.Response )
             player:PrintMessage( 2, SGPlus.Owner.Response )
         elseif( isOwner ) then
                 player:PrintMessage( 2, "sgp_set_rank <unique id>\n" )
