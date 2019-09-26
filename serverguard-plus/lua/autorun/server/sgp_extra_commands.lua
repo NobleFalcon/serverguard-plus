@@ -62,7 +62,7 @@ if( SGPlus.Extra.Enabled ) then
             file.Write( SGPlus.Extra.AdminSitData, playerpos )
 
             local response = "Admin sit position has been updated!"
-            serverguard.Notify( player, SERVERGUARD.NOTIFY.GREEN, response )
+            serverguard.Notify( player, SERVERGUARD.NOTIFY.WHITE, response )
             SGPlus.PrintConsole( SGPlus.WHITE, response )
             return SGPlus.Extra.DisplayChat
         end
