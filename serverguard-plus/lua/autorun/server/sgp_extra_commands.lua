@@ -44,7 +44,7 @@ if( SGPlus.Extra.Enabled ) then
             return SGPlus.Extra.DisplayChat
 
         -- Send player to admin sit spot.
-        elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.AdminSit and player:IsAdmin() ) then
+        elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.AdminSit and SGPlus.Staff.HasPermissions( player ) ) then
             -- Inform user if admin sit position is not set.
             if( file.Read( SGPlus.Extra.AdminSitData, "DATA" ) == "0 0 0" ) then
                 serverguard.Notify( player, SERVERGUARD.NOTIFY.RED, 
