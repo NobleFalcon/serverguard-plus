@@ -1,7 +1,7 @@
 include( "sgp_init.lua" )
 
-SGPlus.Staff = SGPlus.Staff or {}
-
+function SGPlus.Staff.HasPermissions( ply )
+    return table.HasValue( SGPlus.Staff.PermittedGroups, serverguard.player:GetRank( ply ) ) and true or false
 -- Setup
 SGPlus.Staff.Enabled = true -- Enable or disable the SGPlus Staff module.
 
@@ -26,7 +26,7 @@ end
 
 if( SGPlus.Staff.Enabled ) then
     function SGPlus.Staff.GiveAdminTools( player )
-        if( SGPlus.Staff.HasPermissions() ) then
+        if( SGPlus.Staff.HasPermissions( player ) ) then
             for _, v in pairs( SGPlus.Staff.Weapons ) do
                 player:Give( v, true )
             end
