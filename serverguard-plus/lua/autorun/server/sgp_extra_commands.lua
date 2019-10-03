@@ -1,19 +1,5 @@
 include( "sgp_init.lua" )
 
-SGPlus.Extra = SGPlus.Extra or {}
-
--- Setup
-SGPlus.Extra.Enabled = true -- Enable or disable the SGPlus Extra module.
-SGPlus.Extra.DisplayChat = false -- Display chat message when command is recognized.
-SGPlus.Extra.Prefix = "!" -- Command prefix.
-
--- Commands
-SGPlus.Extra.SetSit = "setasit" -- Sets admin sit position.
-SGPlus.Extra.AdminSit = "asit" -- Sends player to selected coordinates.
-SGPlus.Extra.GetPos = "getpos" -- Gets position in vector.
-SGPlus.Extra.Roll = "roll" -- Rolls random number and broadcast's in chat.
-
--- DO NOT TOUCH ANY CODE BENEATH IF YOU DON'T KNOW WHAT YOU ARE DOING!!
 if( SGPlus.Extra.Enabled ) then
 
     -- START SAVE DATA ADMIN SIT

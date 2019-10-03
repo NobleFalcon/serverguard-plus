@@ -1,5 +1,4 @@
--- Included in every file.
-SGPlus = SGPlus or {}
+include( "../sgp_config.lua" )
 
 -- Display messages in console
 SGPlus.WHITE = Color( 255, 255, 255 )
