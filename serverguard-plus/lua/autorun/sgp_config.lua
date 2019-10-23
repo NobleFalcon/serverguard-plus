@@ -26,12 +26,14 @@ SGPlus.Extra.Roll = "roll" -- Rolls random number and broadcast's in chat.
 -- Staff
 SGPlus.Staff.Enabled = true -- Enable or disable the SGPlus Staff module.
 
+-- Which ranks should receive staff weapons.
 SGPlus.Staff.PermittedGroups = { -- Unique rank names.
     "founder",
     "superadmin",
     "admin"
 }
 
+-- What weapons should staff members recieve.
 SGPlus.Staff.Weapons = { -- Weapon class names.
     "weapon_physgun",
     "gmod_tool"
