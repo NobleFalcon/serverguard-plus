@@ -4,7 +4,7 @@
 
 SGuard Plus was made to fill the lack of commands and features the ServerGuard core addon did not have, start enjoying server administration with more features and tools made by users for users.
 
-### Configuration
+### Installation and configuration
 - Drag and drop the serverguard-plus folder containing the addon into your addons folder
 - Edit the `sgp_config.lua` file in your `serverguard-plus/lua` folder to your preferences.
 
