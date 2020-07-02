@@ -1,5 +1,7 @@
 include( "sgp_init.lua" )
 
+util.AddNetworkString("RollMessage")
+
 if( SGPlus.Extra.Enabled ) then
 
     -- START SAVE DATA ADMIN SIT
@@ -19,9 +21,9 @@ if( SGPlus.Extra.Enabled ) then
         
         -- Roll a number between 1 - 100.
         if( message == SGPlus.Extra.Prefix .. SGPlus.Extra.Roll ) then
-            serverguard.Notify( player, SERVERGUARD.NOTIFY.RED, 
-                string.format( "%s rolled %s",
-                player:Nick(), math.random( 1, 100 ) ) )
+            net.Start( "RollMessage" )
+            net.WriteString( string.format( "%s rolled %s", player:Nick(), math.random( 1, 100 ) ) )
+            net.Broadcast()
             return SGPlus.Extra.DisplayChat
 
         -- Get position of player.
