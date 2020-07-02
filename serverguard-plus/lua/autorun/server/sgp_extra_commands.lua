@@ -1,6 +1,6 @@
 include( "sgp_init.lua" )
 
-util.AddNetworkString("RollMessage")
+util.AddNetworkString( "RollMessage" )
 
 if( SGPlus.Extra.Enabled ) then
 
