@@ -1,7 +1,5 @@
 ## ServerGuard+
 
-*This addon is in it's early stage and is expected to get more features in the future, if errors occur just notify me in Discord, please specify how to reproduce them if you know how and paste the error message.*
-
 SGuard Plus was made to fill the lack of commands and features the ServerGuard core addon did not have, start enjoying server administration with more features and tools made by users for users.
 
 ### Installation and configuration
