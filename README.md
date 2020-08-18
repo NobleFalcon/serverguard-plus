@@ -28,6 +28,6 @@ SGuard Plus was made to fill the lack of commands and features the ServerGuard c
 
 ### Console commands
 
-`sgp_set_rank <unique rank name>` Sets the rank of the selected user in `sgp_owner.lua`.
+`sgp_set_rank <unique rank name>` Sets the rank of the owner's SteamID set in the `sgp_config.lua` file.
 
 DISCLAIMER: THIS ADDON IS NOT MADE BY THE SERVERGUARD TEAM.
