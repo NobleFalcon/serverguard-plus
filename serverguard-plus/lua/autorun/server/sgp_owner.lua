@@ -27,7 +27,7 @@ if( SGPlus.Owner.Enabled ) then
             SGPlus.PrintConsole( SGPlus.WHITE, SGPlus.Owner.Response )
             player:PrintMessage( 2, SGPlus.Owner.Response )
         elseif( isOwner ) then
-                player:PrintMessage( 2, "sgp_set_rank <unique id>\n" )
+            player:PrintMessage( 2, "sgp_set_rank <unique id>\n" )
         end
     end )
 
