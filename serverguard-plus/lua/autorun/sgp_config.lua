@@ -8,14 +8,13 @@ SGPlus.Staff = SGPlus.Staff or {}
 -- Owner
 SGPlus.Owner.Enabled = true -- Enable or disable the SGPlus Owner module.
 SGPlus.Owner.User = "STEAM_0:0:33487606" -- Owner's SteamID.
-
 SGPlus.Owner.SetRankCommand = "sgp_set_rank" -- Set rank of owner without rank restrictions.
 SGPlus.Owner.BanCheckTime = 10 -- How frequent should it check for ban.
 
 
 -- Extra commands
 SGPlus.Extra.Enabled = true -- Enable or disable the SGPlus Extra module.
-SGPlus.Extra.BetaModeEnabled = false -- Enable beta features.
+SGPlus.Extra.BetaModeEnabled = true -- Enable beta features.
 SGPlus.Extra.DisplayChat = false -- Display chat message when command is recognized.
 SGPlus.Extra.Prefix = "!" -- Command prefix.
 
