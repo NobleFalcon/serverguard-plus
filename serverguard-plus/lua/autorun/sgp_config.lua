@@ -15,6 +15,7 @@ SGPlus.Owner.BanCheckTime = 10 -- How frequent should it check for ban.
 
 -- Extra commands
 SGPlus.Extra.Enabled = true -- Enable or disable the SGPlus Extra module.
+SGPlus.Extra.BetaModeEnabled = false -- Enable beta features.
 SGPlus.Extra.DisplayChat = false -- Display chat message when command is recognized.
 SGPlus.Extra.Prefix = "!" -- Command prefix.
 
@@ -22,6 +23,7 @@ SGPlus.Extra.SetSit = "setasit" -- Sets admin sit position.
 SGPlus.Extra.AdminSit = "asit" -- Sends player to selected coordinates.
 SGPlus.Extra.GetPos = "getpos" -- Gets position in vector.
 SGPlus.Extra.Roll = "roll" -- Rolls random number and broadcast's in chat.
+SGPlus.Extra.Model = "model"
 
 -- Staff
 SGPlus.Staff.Enabled = true -- Enable or disable the SGPlus Staff module.

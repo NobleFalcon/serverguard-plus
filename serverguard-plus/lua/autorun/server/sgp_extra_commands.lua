@@ -18,7 +18,8 @@ if( SGPlus.Extra.Enabled ) then
 
 
     local function sgp_extra_commands( ply, message )
-        
+        local arguments = string.Split( message, " " )
+
         -- Roll a number between 1 - 100.
         if( message == SGPlus.Extra.Prefix .. SGPlus.Extra.Roll ) then
             net.Start( "RollMessage" )
@@ -52,6 +53,39 @@ if( SGPlus.Extra.Enabled ) then
             local response = "Admin sit position has been updated!"
             serverguard.Notify( ply, SERVERGUARD.NOTIFY.WHITE, response )
             SGPlus.PrintConsole( SGPlus.WHITE, response )
+            return SGPlus.Extra.DisplayChat
+        
+        -- Set model of a player.
+        elseif ( arguments[1] == SGPlus.Extra.Prefix .. SGPlus.Extra.Model and ply:IsAdmin() && SGPlus.Extra.BetaModeEnabled) then
+            local playerNick = arguments[2]
+            local model = arguments[3]
+            local playerList = player.GetAll()
+            local translatedModel = player_manager.TranslatePlayerModel( model )
+            local modelName = player_manager.TranslateToPlayerModelName( translatedModel )
+            local response = string.format( "%s has updated their model to %s", ply:Nick(), modelName )
+            local errorMessage = "Something went wrong, make sure you enter "
+            local playerNameExist = false
+
+            if ( playerNick && model ) then
+                for _, plyer in pairs( playerList ) do
+                    if ( string.lower( plyer:Nick() ) == string.lower( playerNick ) ) then
+                        playerNameExist = true
+                        plyer:SetModel( translatedModel )
+                    end
+                end
+                if ( playerNameExist ) then
+                    serverguard.Notify( ply, SGPlus.GREEN, response)
+                    SGPlus.PrintConsole( SGPlus.WHITE, response )
+                elseif (!playerNameExist) then
+                    serverguard.Notify( ply, SGPlus.LIGHTRED, "Player not found!" )
+                elseif ( false ) then
+                    serverguard.Notify( ply, SGPlus.LIGHTRED, "Invalid model name!")
+                end
+            elseif ( !playerNick && !model) then
+                serverguard.Notify( ply, SGPlus.LIGHTRED, SGPlus.Extra.Prefix .. SGPlus.Extra.Model .. " <player name> <model>" )
+            elseif ( !model ) then
+                serverguard.Notify( ply, SGPlus.LIGHTRED, "You didn't provide a model name!" )
+            end
             return SGPlus.Extra.DisplayChat
         end
     end
