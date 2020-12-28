@@ -62,11 +62,11 @@ if( SGPlus.Extra.Enabled ) then
             local playerList = player.GetAll()
             local translatedModel = player_manager.TranslatePlayerModel( model )
             local modelName = player_manager.TranslateToPlayerModelName( translatedModel )
-            local response = string.format( "%s has updated their model to %s", ply:Nick(), modelName )
+            local response = string.format( "%s has set their model to %s", ply:Nick(), modelName )
             local errorMessage = "Something went wrong, make sure you enter "
             local playerNameExist = false
 
-            if ( playerNick && model ) then
+            if ( playerNick && model && (modelName != "kleiner" || model == "kleiner") ) then
                 for _, plyer in pairs( playerList ) do
                     if ( string.lower( plyer:Nick() ) == string.lower( playerNick ) ) then
                         playerNameExist = true
@@ -85,6 +85,8 @@ if( SGPlus.Extra.Enabled ) then
                 serverguard.Notify( ply, SGPlus.LIGHTRED, SGPlus.Extra.Prefix .. SGPlus.Extra.Model .. " <player name> <model>" )
             elseif ( !model ) then
                 serverguard.Notify( ply, SGPlus.LIGHTRED, "You didn't provide a model name!" )
+            else
+                serverguard.Notify( ply, SGPlus.LIGHTRED, "Model not found!" )
             end
             return SGPlus.Extra.DisplayChat
         end
