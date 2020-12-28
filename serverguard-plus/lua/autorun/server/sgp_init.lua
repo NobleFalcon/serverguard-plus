@@ -1,4 +1,5 @@
 include( "../sgp_config.lua" )
+include( "../sgp_disabled.lua" )
 
 -- Display messages in console
 SGPlus.WHITE = Color( 255, 255, 255 )

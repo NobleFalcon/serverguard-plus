@@ -21,19 +21,19 @@ if( SGPlus.Extra.Enabled ) then
         local arguments = string.Split( message, " " )
 
         -- Roll a number between 1 - 100.
-        if( message == SGPlus.Extra.Prefix .. SGPlus.Extra.Roll ) then
+        if( message == SGPlus.Extra.Prefix .. SGPlus.Extra.Roll && !SGPlus.IsDisabled.Roll) then
             net.Start( "RollMessage" )
             net.WriteString( string.format( "%s rolled %s", ply:Nick(), math.random( 1, 100 ) ) )
             net.Broadcast()
             return SGPlus.Extra.DisplayChat
 
         -- Get position of player.
-        elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.GetPos and player:IsAdmin() ) then
+        elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.GetPos and ply:IsAdmin() && !SGPlus.IsDisabled.GetPos) then
             ply:PrintMessage( 3, tostring( ply:GetPos() ) )
             return SGPlus.Extra.DisplayChat
 
         -- Send player to admin sit spot.
-        elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.AdminSit and SGPlus.Staff.HasPermissions( ply ) ) then
+        elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.AdminSit and SGPlus.Staff.HasPermissions( ply ) && !SGPlus.IsDisabled.AdminSit ) then
             -- Inform user if admin sit position is not set.
             if( file.Read( SGPlus.Extra.AdminSitData, "DATA" ) == "0 0 0" ) then
                 serverguard.Notify( ply, SERVERGUARD.NOTIFY.RED, 
@@ -46,7 +46,7 @@ if( SGPlus.Extra.Enabled ) then
             return SGPlus.Extra.DisplayChat
         
         -- Sets new admin sit position.
-        elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.SetSit and ply:IsAdmin() ) then
+        elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.SetSit and ply:IsAdmin() && !SGPlus.IsDisabled.AdminSit ) then
             local playerpos = tostring( ply:GetPos() )
             file.Write( SGPlus.Extra.AdminSitData, playerpos )
 
@@ -56,7 +56,7 @@ if( SGPlus.Extra.Enabled ) then
             return SGPlus.Extra.DisplayChat
         
         -- Set model of a player.
-        elseif ( arguments[1] == SGPlus.Extra.Prefix .. SGPlus.Extra.Model and ply:IsAdmin() && SGPlus.Extra.BetaModeEnabled) then
+        elseif ( arguments[1] == SGPlus.Extra.Prefix .. SGPlus.Extra.Model and ply:IsAdmin() && SGPlus.Extra.BetaModeEnabled && !SGPlus.IsDisabled.Model) then
             local playerNick = arguments[2]
             local model = arguments[3]
             local playerList = player.GetAll()
