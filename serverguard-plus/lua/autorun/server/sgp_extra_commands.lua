@@ -17,40 +17,40 @@ if( SGPlus.Extra.Enabled ) then
     -- END SAVE DATA ADMIN SIT
 
 
-    local function sgp_extra_commands( player, message )
+    local function sgp_extra_commands( ply, message )
         
         -- Roll a number between 1 - 100.
         if( message == SGPlus.Extra.Prefix .. SGPlus.Extra.Roll ) then
             net.Start( "RollMessage" )
-            net.WriteString( string.format( "%s rolled %s", player:Nick(), math.random( 1, 100 ) ) )
+            net.WriteString( string.format( "%s rolled %s", ply:Nick(), math.random( 1, 100 ) ) )
             net.Broadcast()
             return SGPlus.Extra.DisplayChat
 
         -- Get position of player.
         elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.GetPos and player:IsAdmin() ) then
-            player:PrintMessage( 3, tostring( player:GetPos() ) )
+            ply:PrintMessage( 3, tostring( ply:GetPos() ) )
             return SGPlus.Extra.DisplayChat
 
         -- Send player to admin sit spot.
-        elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.AdminSit and SGPlus.Staff.HasPermissions( player ) ) then
+        elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.AdminSit and SGPlus.Staff.HasPermissions( ply ) ) then
             -- Inform user if admin sit position is not set.
             if( file.Read( SGPlus.Extra.AdminSitData, "DATA" ) == "0 0 0" ) then
-                serverguard.Notify( player, SERVERGUARD.NOTIFY.RED, 
+                serverguard.Notify( ply, SERVERGUARD.NOTIFY.RED, 
                     string.format( "You have not set an admin sit position, do so by running %s%s",
                     SGPlus.Extra.Prefix, SGPlus.Extra.SetSit ) )
             end
 
             local spawndata = Vector( file.Read( SGPlus.Extra.AdminSitData, "DATA" ) )
-            player:SetPos( spawndata )
+            ply:SetPos( spawndata )
             return SGPlus.Extra.DisplayChat
         
         -- Sets new admin sit position.
-        elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.SetSit and player:IsAdmin() ) then
-            local playerpos = tostring( player:GetPos() )
+        elseif ( message == SGPlus.Extra.Prefix .. SGPlus.Extra.SetSit and ply:IsAdmin() ) then
+            local playerpos = tostring( ply:GetPos() )
             file.Write( SGPlus.Extra.AdminSitData, playerpos )
 
             local response = "Admin sit position has been updated!"
-            serverguard.Notify( player, SERVERGUARD.NOTIFY.WHITE, response )
+            serverguard.Notify( ply, SERVERGUARD.NOTIFY.WHITE, response )
             SGPlus.PrintConsole( SGPlus.WHITE, response )
             return SGPlus.Extra.DisplayChat
         end
