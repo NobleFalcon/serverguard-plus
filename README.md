@@ -16,8 +16,8 @@ SGuard Plus was made to fill the lack of commands and features the ServerGuard c
 -   Set rank command not checking if you got permission, just for the owner. To test rank related stuff without console access.
 -   Automatically unban owner.
 
-### Beta features
--   !model command sets the spesified user to a requested model path or model name.
+### Beta commands
+-   `!model` command sets the spesified user to a requested model path or model name.
 
 ### Chat commands
 
