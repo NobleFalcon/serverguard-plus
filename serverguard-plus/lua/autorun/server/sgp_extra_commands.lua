@@ -57,36 +57,41 @@ if( SGPlus.Extra.Enabled ) then
         
         -- Set model of a player.
         elseif ( arguments[1] == SGPlus.Extra.Prefix .. SGPlus.Extra.Model and ply:IsAdmin() && SGPlus.Extra.BetaModeEnabled && !SGPlus.IsDisabled.Model) then
-            local playerNick = arguments[2]
-            local model = arguments[3]
+            -- Code needs to be rewritten from scratch.
+            local playerNick = arguments[2] or ""
+            local model = arguments[3] or ""
             local playerList = player.GetAll()
-            local translatedModel = player_manager.TranslatePlayerModel( model )
-            local modelName = player_manager.TranslateToPlayerModelName( translatedModel )
-            local response = string.format( "%s has set their model to %s", ply:Nick(), modelName )
-            local errorMessage = "Something went wrong, make sure you enter "
+            local translatedModelName = player_manager.TranslateToPlayerModelName( model )
+            local modelName = player_manager.TranslatePlayerModel( translatedModelName )
             local playerNameExist = false
 
-            if ( playerNick && model && (modelName != "kleiner" || model == "kleiner") ) then
+            if ( playerNick != "" && model != "" ) then
                 for _, plyer in pairs( playerList ) do
                     if ( string.lower( plyer:Nick() ) == string.lower( playerNick ) ) then
                         playerNameExist = true
-                        plyer:SetModel( translatedModel )
+                        if ( translatedModelName != "kleiner" || model == "models/player/kleiner.mdl" ) then
+                            serverguard.Notify( ply, SGPlus.GREEN, "First run!")
+                            plyer:SetModel( modelName )
+                        elseif ( model != "kleiner" || translatedModelName == "kleiner" && model == "kleiner" ) then
+                            modelName = player_manager.TranslatePlayerModel( model )
+                            plyer:SetModel( modelName )
+                            translatedModelName = player_manager.TranslateToPlayerModelName( modelName )
+                        end
                     end
                 end
                 if ( playerNameExist ) then
-                    serverguard.Notify( ply, SGPlus.GREEN, response)
-                    SGPlus.PrintConsole( SGPlus.WHITE, response )
+                    local successRunMessage = string.format( "%s has set %s's model to %s", ply:Nick(), playerNick, translatedModelName )
+                    serverguard.Notify( ply, SGPlus.GREEN, successRunMessage)
+                    SGPlus.PrintConsole( SGPlus.WHITE, successRunMessage )
                 elseif (!playerNameExist) then
                     serverguard.Notify( ply, SGPlus.LIGHTRED, "Player not found!" )
                 elseif ( false ) then
                     serverguard.Notify( ply, SGPlus.LIGHTRED, "Invalid model name!")
                 end
-            elseif ( !playerNick && !model) then
+            elseif ( playerNick == "" && model == "") then
                 serverguard.Notify( ply, SGPlus.LIGHTRED, SGPlus.Extra.Prefix .. SGPlus.Extra.Model .. " <player name> <model>" )
-            elseif ( !model ) then
+            elseif ( model == "" ) then
                 serverguard.Notify( ply, SGPlus.LIGHTRED, "You didn't provide a model name!" )
-            else
-                serverguard.Notify( ply, SGPlus.LIGHTRED, "Model not found!" )
             end
             return SGPlus.Extra.DisplayChat
         end
