@@ -17,7 +17,7 @@ SGuard Plus was made to fill the lack of commands and features the ServerGuard c
 -   Automatically unban owner.
 
 ### Beta commands
--   `!model` command sets the spesified user to a requested model path or model name.
+`!model` command sets the spesified user to a requested model path or model name.
 
 ### Chat commands
 
