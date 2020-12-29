@@ -70,7 +70,6 @@ if( SGPlus.Extra.Enabled ) then
                     if ( string.lower( plyer:Nick() ) == string.lower( playerNick ) ) then
                         playerNameExist = true
                         if ( translatedModelName != "kleiner" || model == "models/player/kleiner.mdl" ) then
-                            serverguard.Notify( ply, SGPlus.GREEN, "First run!")
                             plyer:SetModel( modelName )
                         elseif ( model != "kleiner" || translatedModelName == "kleiner" && model == "kleiner" ) then
                             modelName = player_manager.TranslatePlayerModel( model )
@@ -85,8 +84,6 @@ if( SGPlus.Extra.Enabled ) then
                     SGPlus.PrintConsole( SGPlus.WHITE, successRunMessage )
                 elseif (!playerNameExist) then
                     serverguard.Notify( ply, SGPlus.LIGHTRED, "Player not found!" )
-                elseif ( false ) then
-                    serverguard.Notify( ply, SGPlus.LIGHTRED, "Invalid model name!")
                 end
             elseif ( playerNick == "" && model == "") then
                 serverguard.Notify( ply, SGPlus.LIGHTRED, SGPlus.Extra.Prefix .. SGPlus.Extra.Model .. " <player name> <model>" )
