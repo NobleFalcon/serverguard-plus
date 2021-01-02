@@ -58,16 +58,15 @@ if( SGPlus.Extra.Enabled ) then
         -- Set model of a player.
         elseif ( arguments[1] == SGPlus.Extra.Prefix .. SGPlus.Extra.Model and ply:IsAdmin() && SGPlus.Extra.BetaModeEnabled && !SGPlus.IsDisabled.Model) then
             -- Code needs to be rewritten from scratch.
-            local playerNick = arguments[2] or ""
+            local playerNick = string.lower( arguments[2] or "" )
             local model = arguments[3] or ""
-            local playerList = player.GetAll()
             local translatedModelName = player_manager.TranslateToPlayerModelName( model )
             local modelName = player_manager.TranslatePlayerModel( translatedModelName )
             local playerNameExist = false
 
             if ( playerNick != "" && model != "" ) then
-                for _, plyer in pairs( playerList ) do
-                    if ( string.lower( plyer:Nick() ) == string.lower( playerNick ) ) then
+                for _, plyer in pairs( player.GetAll() ) do
+                    if ( string.lower( plyer:Nick() ) == playerNick ) then
                         playerNameExist = true
                         if ( translatedModelName != "kleiner" || model == "models/player/kleiner.mdl" ) then
                             plyer:SetModel( modelName )
@@ -79,8 +78,9 @@ if( SGPlus.Extra.Enabled ) then
                     end
                 end
                 if ( playerNameExist ) then
-                    local successRunMessage = string.format( "%s has set %s's model to %s", ply:Nick(), playerNick, translatedModelName )
-                    serverguard.Notify( ply, SGPlus.GREEN, successRunMessage)
+                    local playerNickCapitalized = SGPlus.Capitalize( playerNick )
+                    local successRunMessage = string.format( "%s has set %s's model to %s", ply:Nick(), playerNickCapitalized, translatedModelName )
+                    serverguard.Notify( ply, SGPlus.GREEN, ply:Nick(), SGPlus.WHITE, " has set ", SGPlus.LIGHTRED, playerNickCapitalized .. "'s", SGPlus.WHITE, " model to ", SGPlus.GREEN, translatedModelName)
                     SGPlus.PrintConsole( SGPlus.WHITE, successRunMessage )
                 elseif (!playerNameExist) then
                     serverguard.Notify( ply, SGPlus.LIGHTRED, "Player not found!" )

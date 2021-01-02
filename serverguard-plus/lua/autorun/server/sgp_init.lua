@@ -5,7 +5,7 @@ include( "../sgp_disabled.lua" )
 SGPlus.WHITE = Color( 255, 255, 255 )
 SGPlus.RED = Color( 255, 0, 0 )
 SGPlus.DARKRED = Color( 220, 0, 0 )
-SGPlus.GREEN = Color( 0, 255, 0 )
+SGPlus.GREEN = Color( 55, 163, 68 )
 SGPlus.BLUE = Color( 50, 194, 219 )
 SGPlus.LIGHTRED = Color( 232, 68, 68 )
 
