@@ -14,3 +14,7 @@ SGPlus.PrintConsole = function( color, log )
     MsgC( SGPlus.BLUE, string.format( "[%s][SGuard+] ", time ),
      color or SGPlus.WHITE, log .. "\n" )
 end
+
+SGPlus.Capitalize = function( str )
+    return (str:gsub("^%l", string.upper))
+end
