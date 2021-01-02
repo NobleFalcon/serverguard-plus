@@ -95,7 +95,7 @@ if( SGPlus.Extra.Enabled ) then
         -- Set current weapon magasine to spesified number.
         elseif ( arguments[1] == SGPlus.Extra.Prefix .. SGPlus.Extra.SetMag && ply:IsAdmin() && !SGPlus.IsDisabled.SetMag ) then
             local clipAmmo = arguments[2]
-            if ( clipAmmo ) then
+            if ( isnumber( tonumber( clipAmmo ) ) ) then
             local currentWeapon = ply:GetActiveWeapon()
             local currentWeaponName = currentWeapon:GetPrintName()
                 ply:GetActiveWeapon():SetClip1( clipAmmo )
