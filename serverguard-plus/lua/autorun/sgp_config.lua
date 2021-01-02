@@ -23,6 +23,7 @@ SGPlus.Extra.AdminSit = "asit" -- Sends player to selected coordinates.
 SGPlus.Extra.GetPos = "getpos" -- Gets position in vector.
 SGPlus.Extra.Roll = "roll" -- Rolls random number and broadcast's in chat.
 SGPlus.Extra.Model = "model"
+SGPlus.Extra.SetMag = "setmag"
 
 -- Staff
 SGPlus.Staff.Enabled = true -- Enable or disable the SGPlus Staff module.

@@ -91,6 +91,20 @@ if( SGPlus.Extra.Enabled ) then
                 serverguard.Notify( ply, SGPlus.LIGHTRED, "You didn't provide a model name!" )
             end
             return SGPlus.Extra.DisplayChat
+        
+        -- Set current weapon magasine to spesified number.
+        elseif ( arguments[1] == SGPlus.Extra.Prefix .. SGPlus.Extra.SetMag && ply:IsAdmin() && !SGPlus.IsDisabled.SetMag ) then
+            local clipAmmo = arguments[2]
+            if ( clipAmmo ) then
+            local currentWeapon = ply:GetActiveWeapon()
+            local currentWeaponName = currentWeapon:GetPrintName()
+                ply:GetActiveWeapon():SetClip1( clipAmmo )
+                serverguard.Notify( ply, SGPlus.GREEN, SGPlus.Capitalize( ply:Nick() ), SGPlus.WHITE, " has set the magasine of his ", SGPlus.LIGHTRED, currentWeaponName, SGPlus.WHITE, " to ", SGPlus.GREEN, clipAmmo)
+                SGPlus.PrintConsole(SGPlus.WHITE, SGPlus.Capitalize( ply:Nick() ) .. " has set the magasine of his " .. currentWeaponName .. " to " .. clipAmmo )
+            else
+                serverguard.Notify( ply, SGPlus.LIGHTRED, "Syntax error:", SGPlus.WHITE, " !setmag <number>" )
+            end
+            return SGPlus.Extra.DisplayChat
         end
     end
 
