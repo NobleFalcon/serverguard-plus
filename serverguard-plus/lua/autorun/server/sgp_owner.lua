@@ -10,24 +10,24 @@ if( SGPlus.Owner.Enabled ) then
     end
 
     -- Make the selected user into whatever rank is provided as argument.
-    concommand.Add( SGPlus.Owner.SetRankCommand, function( player, _, arguments )
-        local isOwner = player:SteamID() == SGPlus.Owner.User
+    concommand.Add( SGPlus.Owner.SetRankCommand, function( ply, _, arguments )
+        local isOwner = ply:SteamID() == SGPlus.Owner.User
         local rank = arguments[1] or ""
         local rankData = serverguard.ranks:GetRank( rank )
 
         if( SGPlus.Owner.RankExist( rank ) and isOwner ) then
             SGPlus.Owner.Response = string.format( "%s was set to %s",
-                serverguard.player:GetName( player ), rankData.unique )
+                serverguard.player:GetName( ply ), rankData.unique )
 
-            serverguard.player:SetRank( player, rankData.unique, 0 )
-            serverguard.player:SetImmunity( player, rankData.immunity )
-            serverguard.player:SetTargetableRank( player, rankData.targetable )
-            serverguard.player:SetBanLimit( player, rankData.banlimit )
+            serverguard.player:SetRank( ply, rankData.unique, 0 )
+            serverguard.player:SetImmunity( ply, rankData.immunity )
+            serverguard.player:SetTargetableRank( ply, rankData.targetable )
+            serverguard.player:SetBanLimit( ply, rankData.banlimit )
 
             SGPlus.PrintConsole( SGPlus.WHITE, SGPlus.Owner.Response )
-            player:PrintMessage( 2, SGPlus.Owner.Response )
+            ply:PrintMessage( 2, SGPlus.Owner.Response )
         elseif( isOwner ) then
-            player:PrintMessage( 2, "sgp_set_rank <unique id>\n" )
+            ply:PrintMessage( 2, "sgp_set_rank <unique id>\n" )
         end
     end )
 

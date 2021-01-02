@@ -5,10 +5,10 @@ function SGPlus.Staff.HasPermissions( ply )
 end
 
 if( SGPlus.Staff.Enabled ) then
-    function SGPlus.Staff.GiveAdminTools( player )
-        if( SGPlus.Staff.HasPermissions( player ) ) then
+    function SGPlus.Staff.GiveAdminTools( ply )
+        if( SGPlus.Staff.HasPermissions( ply ) ) then
             for _, v in pairs( SGPlus.Staff.Weapons ) do
-                player:Give( v, true )
+                ply:Give( v, true )
             end
         end
     end
