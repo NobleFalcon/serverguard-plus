@@ -4,7 +4,7 @@ function SGPlus.Staff.HasPermissions( ply )
     return table.HasValue( SGPlus.Staff.PermittedGroups, serverguard.player:GetRank( ply ) ) and true or false
 end
 
-if( SGPlus.Staff.Enabled ) then
+if ( SGPlus.Staff.Enabled ) then
     function SGPlus.Staff.GiveAdminTools( ply )
         if( SGPlus.Staff.HasPermissions( ply ) ) then
             for _, v in pairs( SGPlus.Staff.Weapons ) do
