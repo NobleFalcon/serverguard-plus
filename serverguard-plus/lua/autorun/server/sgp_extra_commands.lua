@@ -86,7 +86,7 @@ if( SGPlus.Extra.Enabled ) then
                     serverguard.Notify( ply, SGPlus.LIGHTRED, "Player not found!" )
                 end
             elseif ( playerNick == "" && model == "") then
-                serverguard.Notify( ply, SGPlus.LIGHTRED, SGPlus.Extra.Prefix .. SGPlus.Extra.Model .. " <player name> <model>" )
+                serverguard.Notify( ply,SGPlus.LIGHTRED, "Syntax error: ", SGPlus.WHITE, SGPlus.Extra.Prefix .. SGPlus.Extra.Model .. " <player name> <model>" )
             elseif ( model == "" ) then
                 serverguard.Notify( ply, SGPlus.LIGHTRED, "You didn't provide a model name!" )
             end
@@ -102,7 +102,7 @@ if( SGPlus.Extra.Enabled ) then
                 serverguard.Notify( ply, SGPlus.GREEN, SGPlus.Capitalize( ply:Nick() ), SGPlus.WHITE, " has set the magasine of his ", SGPlus.LIGHTRED, currentWeaponName, SGPlus.WHITE, " to ", SGPlus.GREEN, clipAmmo)
                 SGPlus.PrintConsole(SGPlus.WHITE, SGPlus.Capitalize( ply:Nick() ) .. " has set the magasine of his " .. currentWeaponName .. " to " .. clipAmmo )
             else
-                serverguard.Notify( ply, SGPlus.LIGHTRED, "Syntax error:", SGPlus.WHITE, " !setmag <number>" )
+                serverguard.Notify( ply, SGPlus.LIGHTRED, "Syntax error: ", SGPlus.WHITE, SGPlus.Extra.Prefix .. SGPlus.Extra.SetMag .. " <number>" )
             end
             return SGPlus.Extra.DisplayChat
         end
